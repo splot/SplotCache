@@ -1,0 +1,19 @@
+{
+    "name": "splot/cache",
+    "description": "Cache system.",
+    "keywords": ["cache"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michał Dudek",
+            "email": "michal@michaldudek.pl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "michaldudek/foundation": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Splot\\Cache": "src/" }
+    }
+}
