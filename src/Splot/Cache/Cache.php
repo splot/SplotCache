@@ -90,19 +90,41 @@ class Cache implements CacheInterface
      * 
      * @param string $key Key based on which to read from the cache.
      * @param int $age [optional] How old the cached key can be? Default: 0 - based on TTL.
+     * @param callable $callback [optional] Callback that is called if the resource was not found in the cache and that
+     *                           should return a value to cache. It will set the TTL of the cached resource to what was
+     *                           set in $age. Similar to Memcached "read-through callbacks", but it doesn't get any
+     *                           arguments and should return the cached resource. That resource will then also be sent
+     *                           as a return value of the get() method.
      * @return mixed
      */
-    public function get($key, $age = 0) {
+    public function get($key, $age = 0, $callback = null) {
         if (!$this->enabled) {
             return null;
         }
 
-        if (!$this->has($key, $age)) {
+        $has = $this->has($key, $age);
+
+        // if there is a callback defined then don't exit yet
+        if (!$has && !is_callable($callback)) {
             return null;
         }
 
-        $resourceKey = $this->buildKey($key);
-        return $this->store->read($resourceKey);
+        // if resource is definetely available then read it
+        if ($has) {
+            $resourceKey = $this->buildKey($key);
+            $resource = $this->store->read($resourceKey);
+
+            // if resource was found or if the $callback hasn't been defined, return it (or null)
+            if ($resource !== null || !is_callable($callback)) {
+                return $resource;
+            }
+        }
+
+        // if $callback is set then call it to get the resource to be cached
+        $resource = call_user_func($callback);
+        // cache it
+        $this->set($key, $resource, $age);
+        return $resource;
     }
 
     /**

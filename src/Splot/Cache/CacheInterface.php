@@ -28,9 +28,14 @@ interface CacheInterface
      * 
      * @param string $key Key based on which to read from the cache.
      * @param int $age [optional] How old the cached key can be? Default: 0 - based on TTL.
+     * @param callable $callback [optional] Callback that is called if the resource was not found in the cache and that
+     *                           should return a value to cache. It will set the TTL of the cached resource to what was
+     *                           set in $age. Similar to Memcached "read-through callbacks", but it doesn't get any
+     *                           arguments and should return the cached resource. That resource will then also be sent
+     *                           as a return value of the get() method.
      * @return mixed
      */
-    public function get($key, $age = 0);
+    public function get($key, $age = 0, $callback = null);
 
     /**
      * Check if key is stored in cache.
