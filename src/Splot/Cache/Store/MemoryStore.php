@@ -13,11 +13,6 @@
  */
 namespace Splot\Cache\Store;
 
-use InvalidArgumentException;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RegexIterator;
-
 use MD\Foundation\Utils\ArrayUtils;
 use MD\Foundation\Utils\StringUtils;
 
