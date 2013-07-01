@@ -107,7 +107,7 @@ class FileStore implements StoreInterface
      * @param string $namespace [optional] Cache namespace if only that namespace needs to be removed.
      */
     public function removeAll($namespace = '') {
-        $dir = dirname($this->keyToFilePath($namespace . CacheOptions::SEPARATOR .'.ignore'));
+        $dir = dirname($this->keyToFilePath($namespace . CacheOptions::NAMESPACE_SEPARATOR .'.ignore'));
 
         $iterator = new RecursiveDirectoryIterator($dir);
         $iterator = new RecursiveIteratorIterator($iterator);
@@ -128,6 +128,7 @@ class FileStore implements StoreInterface
      * @return string
      */
     protected function keyToFilePath($key) {
+        $key = str_replace(CacheOptions::NAMESPACE_SEPARATOR, CacheOptions::SEPARATOR, $key);
         $keyPath = explode(CacheOptions::SEPARATOR, $key);
         $keyPath = array_map(function($v) {
             return StringUtils::fileNameFriendly($v);

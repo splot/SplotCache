@@ -54,7 +54,7 @@ class Cache implements CacheInterface
      */
     public function __construct(StoreInterface $store, $namespace = null, $enabled = true) {
         $this->store = $store;
-        $this->namespace = $namespace;
+        $this->namespace = strtolower($namespace);
         $this->enabled = $enabled;
     }
 
@@ -193,7 +193,6 @@ class Cache implements CacheInterface
      */
     public function flush() {
         $this->store->removeAll($this->namespace);
-        //throw new \MD\Foundation\Exceptions\NotImplementedException();
     }
 
     /*****************************************************
@@ -213,7 +212,7 @@ class Cache implements CacheInterface
             return $key;
         }
 
-        return $this->namespace . CacheOptions::SEPARATOR . $key;
+        return $this->namespace . CacheOptions::NAMESPACE_SEPARATOR . $key;
     }
 
     /**
@@ -235,7 +234,7 @@ class Cache implements CacheInterface
      * @param string $namespace Cache namespace.
      */
     public function setNamespace($namespace) {
-        $this->namespace = $namespace;
+        $this->namespace = strtolower($namespace);
     }
 
     /**

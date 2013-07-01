@@ -14,5 +14,6 @@ interface CacheOptions
 {
 
     const SEPARATOR = '::';
+    const NAMESPACE_SEPARATOR = '>>';
 
 }
