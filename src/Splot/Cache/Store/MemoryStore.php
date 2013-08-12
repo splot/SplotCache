@@ -19,7 +19,7 @@ use MD\Foundation\Utils\StringUtils;
 use Splot\Cache\Store\StoreInterface;
 use Splot\Cache\CacheOptions;
 
-class FileStore implements StoreInterface
+class MemoryStore implements StoreInterface
 {
 
     /**
