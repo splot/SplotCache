@@ -15,11 +15,7 @@
  */
 namespace Splot\Cache\Store;
 
-use MD\Foundation\Utils\ArrayUtils;
-use MD\Foundation\Utils\StringUtils;
-
 use Splot\Cache\Store\StoreInterface;
-use Splot\Cache\CacheOptions;
 
 class MemoryStore implements StoreInterface
 {

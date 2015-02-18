@@ -13,7 +13,6 @@
  */
 namespace Splot\Cache\Store;
 
-use InvalidArgumentException;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RegexIterator;

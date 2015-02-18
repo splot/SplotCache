@@ -15,7 +15,6 @@ use Memcached;
 
 use MD\Foundation\Exceptions\InvalidArgumentException;
 use MD\Foundation\Utils\ArrayUtils;
-use MD\Foundation\Utils\StringUtils;
 
 use Splot\Cache\Store\StoreInterface;
 use Splot\Cache\CacheOptions;
