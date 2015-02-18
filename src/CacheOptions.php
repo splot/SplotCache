@@ -5,7 +5,7 @@
  * @package SplotCache
  * @author Michał Dudek <michal@michaldudek.pl>
  * 
- * @copyright Copyright (c) 2013, Michał Dudek
+ * @copyright Copyright (c) 2015, Michał Dudek
  * @license MIT
  */
 namespace Splot\Cache;

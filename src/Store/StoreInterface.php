@@ -20,7 +20,7 @@ interface StoreInterface
      * @param string $key Cache resource key.
      * @return mixed
      */
-    public function read($key);
+    function read($key);
 
     /**
      * Checks if cache resource exists.
@@ -28,7 +28,7 @@ interface StoreInterface
      * @param string $key Cache resource key.
      * @return bool
      */
-    public function exists($key);
+    function exists($key);
 
     /**
      * Write to the given cache resource.
@@ -36,20 +36,20 @@ interface StoreInterface
      * @param string $key Cache resource key.
      * @param mixed $data Whatever data to be cached.
      */
-    public function write($key, $data);
+    function write($key, $data);
 
     /**
      * Removes the given cache resource from the cache.
      * 
      * @param string $key Cache resource key.
      */
-    public function remove($key);
+    function remove($key);
 
     /**
      * Removes all resources in the cache, filtered by the optional namespace.
      * 
      * @param string $namespace [optional] Cache namespace if only that namespace needs to be removed.
      */
-    public function removeAll($namespace = '');
+    function removeAll($namespace = '');
 
 }

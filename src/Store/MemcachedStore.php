@@ -13,8 +13,7 @@ namespace Splot\Cache\Store;
 
 use Memcached;
 
-use InvalidArgumentException;
-
+use MD\Foundation\Exceptions\InvalidArgumentException;
 use MD\Foundation\Utils\ArrayUtils;
 use MD\Foundation\Utils\StringUtils;
 
@@ -41,26 +40,14 @@ class MemcachedStore implements StoreInterface
     /**
      * Constructor.
      * 
-     * @param array $config Array of configuration options.
+     * @param array $servers List of memcached servers.
      */
-    public function __construct(array $config) {
-        // check for all required info
-        if (!ArrayUtils::checkValues($config, array('servers'))) {
-            throw new InvalidArgumentException('"'. get_called_class() .'::__construct()"  expects 1st argument to be an array containing non-empty key "servers", "'. implode('", "', array_keys($config)) .'" given.');
-        }
-
-        $servers = array();
-
-        foreach($config['servers'] as $server) {
+    public function __construct(array $servers) {
+        // verify the structure
+        foreach($servers as $server) {
             if (!ArrayUtils::checkValues($server, array('host', 'port'))) {
-                throw new InvalidArgumentException('"'. get_called_class() .'::__construct()" expects a server array with non-empty keys "host" and "port", "'. implode('", "', array_keys($config)) .'" given.');
+                throw new InvalidArgumentException('server array with non-empty keys "host" and "port"', $servers);
             }
-
-            $servers[] = array(
-                $server['host'],
-                $server['port'],
-                isset($server['weight']) ? intval($server['weight']) : 0
-            );
         }
 
         $this->memcached = new Memcached();

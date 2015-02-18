@@ -5,7 +5,7 @@
  * @package SplotCache
  * @author Michał Dudek <michal@michaldudek.pl>
  * 
- * @copyright Copyright (c) 2013, Michał Dudek
+ * @copyright Copyright (c) 2015, Michał Dudek
  * @license MIT
  */
 namespace Splot\Cache;
@@ -21,7 +21,7 @@ interface CacheInterface
      * @param int $ttl [optional] Time To Leave for the cache in seconds. Default: 0 (should be checked on read,
      *                 otherwise it will be cached indefinetely).
      */
-    public function set($key, $data, $ttl = 0);
+    function set($key, $data, $ttl = 0);
 
     /**
      * Read from cache.
@@ -35,7 +35,7 @@ interface CacheInterface
      *                           as a return value of the get() method.
      * @return mixed
      */
-    public function get($key, $age = 0, $callback = null);
+    function get($key, $age = 0, $callback = null);
 
     /**
      * Check if key is stored in cache.
@@ -44,19 +44,19 @@ interface CacheInterface
      * @param int $age [optional] How old the cached key can be? Default: 0 - based on TTL.
      * @return bool
      */
-    public function has($key, $age = 0);
+    function has($key, $age = 0);
 
     /**
      * Clear the cache.
      * 
      * @param string $key Key based on which to clear the cache.
      */
-    public function clear($key);
+    function clear($key);
 
     /**
      * Clears everything in the cache.
      */
-    public function flush();
+    function flush();
 
     /*****************************************************
      * SETTERS AND GETTERS
@@ -66,34 +66,34 @@ interface CacheInterface
      * 
      * @param string $namespace Cache namespace.
      */
-    public function setNamespace($namespace);
+    function setNamespace($namespace);
 
     /**
      * Returns the namespace for this cache.
      * 
      * @return string
      */
-    public function getNamespace();
+    function getNamespace();
 
     /**
      * Sets the cache to be enabled or not.
      * 
      * @param bool $enabled [optional] Default: true.
      */
-    public function setEnabled($enabled = true);
+    function setEnabled($enabled = true);
 
     /**
      * Returns information whether the cache is enabled or not.
      * 
      * @return bool
      */
-    public function getEnabled();
+    function getEnabled();
 
     /**
      * Returns information whether the cache is enabled or not.
      * 
      * @return bool
      */
-    public function isEnabled();
+    function isEnabled();
 
 }

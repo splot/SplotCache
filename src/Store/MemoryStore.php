@@ -1,6 +1,8 @@
 <?php
 /**
- * Memory Store for caching. This store uses memory for caching, so it only lives for period of one request.
+ * Memory Store for caching.
+ * 
+ * This store uses memory for caching, so it only lives for period of one request.
  * 
  * Also known as "array cache".
  * 
@@ -8,7 +10,7 @@
  * @subpackage Store
  * @author Michał Dudek <michal@michaldudek.pl>
  * 
- * @copyright Copyright (c) 2013, Michał Dudek
+ * @copyright Copyright (c) 2015, Michał Dudek
  * @license MIT
  */
 namespace Splot\Cache\Store;
@@ -28,15 +30,6 @@ class MemoryStore implements StoreInterface
      * @var array
      */
     protected $cache = array();
-
-    /**
-     * Constructor.
-     * 
-     * @param array $config Array of configuration options. None required.
-     */
-    public function __construct(array $config) {
-        // this cache doesn't require any configuration
-    }
 
     /**
      * Reads from the given cache resource.

@@ -1,12 +1,14 @@
 <?php
 /**
- * File Store for caching. This store uses filesystem in the configured directory to store cache resources.
+ * File Store for caching.
+ * 
+ * This store uses filesystem in the configured directory to store cache resources.
  * 
  * @package SplotCache
  * @subpackage Store
  * @author Michał Dudek <michal@michaldudek.pl>
  * 
- * @copyright Copyright (c) 2013, Michał Dudek
+ * @copyright Copyright (c) 2015, Michał Dudek
  * @license MIT
  */
 namespace Splot\Cache\Store;
@@ -16,7 +18,6 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RegexIterator;
 
-use MD\Foundation\Utils\ArrayUtils;
 use MD\Foundation\Utils\StringUtils;
 
 use Splot\Cache\Store\StoreInterface;
@@ -34,16 +35,11 @@ class FileStore implements StoreInterface
 
     /**
      * Constructor.
-     * 
-     * @param array $config Array of configuration options. Must contain "dir".
+     *
+     * @param string $dir Location of the cache directory.
      */
-    public function __construct(array $config) {
-        // check for all required info
-        if (!ArrayUtils::checkValues($config, array('dir'))) {
-            throw new InvalidArgumentException('"'. get_called_class() .'::__construct()"  expects 1st argument to be an array containing non-empty key "dir", "'. implode('", "', array_keys($config)) .'" given.');
-        }
-
-        $this->dir = rtrim($config['dir'], DIRECTORY_SEPARATOR);
+    public function __construct($dir) {
+        $this->dir = rtrim($dir, DIRECTORY_SEPARATOR);
     }
 
     /**
