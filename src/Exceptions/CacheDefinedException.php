@@ -16,6 +16,4 @@ use MD\Foundation\Exceptions\ReadOnlyException;
 class CacheDefinedException extends ReadOnlyException
 {
 
-
-
 }

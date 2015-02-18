@@ -16,6 +16,4 @@ use MD\Foundation\Exceptions\ReadOnlyException;
 class StoreDefinedException extends ReadOnlyException
 {
 
-
-
 }

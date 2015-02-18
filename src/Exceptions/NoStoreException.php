@@ -16,6 +16,4 @@ use MD\Foundation\Exceptions\NotFoundException;
 class NoStoreException extends NotFoundException
 {
 
-
-
 }
