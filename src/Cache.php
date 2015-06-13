@@ -99,7 +99,7 @@ class Cache implements CacheInterface
      */
     public function get($key, $age = 0, $callback = null) {
         if (!$this->enabled) {
-            return null;
+            return is_callable($callback) ? call_user_func($callback) : null;
         }
 
         $has = $this->has($key, $age);
