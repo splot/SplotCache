@@ -18,6 +18,7 @@ use Splot\Cache\Exceptions\NoCacheException;
 use Splot\Cache\Exceptions\NoStoreException;
 use Splot\Cache\Store\StoreInterface;
 use Splot\Cache\Cache;
+use Splot\Cache\CacheInterface;
 use Splot\Cache\CacheOptions;
 
 class CacheProvider
@@ -171,6 +172,17 @@ class CacheProvider
         }
 
         return $this->caches[$fullname];
+    }
+
+    /**
+     * Adds a cache to the provider registry.
+     * 
+     * @param string         $name  Name of the cache to be added.
+     * @param CacheInterface $cache The cache.
+     */
+    public function addCache($name, CacheInterface $cache) {
+        $fullname = $this->buildName($name);
+        $this->cahces[$fullname] = $cache;
     }
 
     /**
