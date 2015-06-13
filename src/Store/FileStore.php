@@ -103,6 +103,9 @@ class FileStore implements StoreInterface
      */
     public function removeAll($namespace = '') {
         $dir = dirname($this->keyToFilePath($namespace . CacheOptions::NAMESPACE_SEPARATOR .'.ignore'));
+        if (!is_dir($dir)) {
+            return;
+        }
 
         $iterator = new RecursiveDirectoryIterator($dir);
         $iterator = new RecursiveIteratorIterator($iterator);
